@@ -29,5 +29,5 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/surgeryflow:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/surgeryflow:${{ matrix.hospital }}_latest
           build-args: ASSET_FILE=configs/${{ matrix.hospital }}_dcm.conf
