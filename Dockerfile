@@ -5,7 +5,7 @@ COPY ${ASSET_FILE} /assets/
 
 LABEL maintainer="Onset-Lab"
 
-ENV NII2DCM_REVISION=0.1.0
+ENV NII2DCM_REVISION=0.2.0
 
 WORKDIR /
 RUN apt-get update && apt-get -y install git unzip dcm2niix wget dcmtk
