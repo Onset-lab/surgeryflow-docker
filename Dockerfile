@@ -11,10 +11,6 @@ WORKDIR /
 RUN apt-get update && apt-get -y install git unzip dcm2niix wget dcmtk
 RUN pip install dcm2bids
 
-# Install nii2dcm
-RUN python3 -m pip install --upgrade pip && \
-    pip install git+https://github.com/onset-lab/nii2dcm.git@${NII2DCM_REVISION}
-
 RUN mkdir /rbx
 RUN wget https://zenodo.org/records/10103446/files/atlas.zip -O /atlas.zip && \
     unzip /atlas.zip -d /rbx && \
@@ -30,6 +26,10 @@ RUN mv nextflow-21.10.6-all /usr/local/bin/nextflow
 RUN chmod +x /usr/local/bin/nextflow
 RUN nextflow -v
 RUN apt install -y rsync
+
+# Install nii2dcm
+RUN python3 -m pip install --upgrade pip && \
+    pip install git+https://github.com/onset-lab/nii2dcm.git
 
 WORKDIR /
 RUN apt-get install -y git
