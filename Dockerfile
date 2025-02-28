@@ -24,6 +24,7 @@ RUN wget https://zenodo.org/records/10103446/files/config.zip -O /config.zip && 
     rm /config.zip
 
 WORKDIR /
+RUN apt-get install -y default-jre-headless
 RUN wget https://github.com/nextflow-io/nextflow/releases/download/v21.10.6/nextflow-21.10.6-all
 RUN mv nextflow-21.10.6-all /usr/local/bin/nextflow
 RUN chmod +x /usr/local/bin/nextflow
@@ -32,6 +33,6 @@ RUN apt install -y rsync
 
 WORKDIR /
 RUN apt-get install -y git
-RUN pip install git+https://github.com/Onset-lab/SurgeryFlow.git
+RUN git clone https://github.com/Onset-lab/SurgeryFlow.git
 
 WORKDIR /
