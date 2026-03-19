@@ -6,6 +6,7 @@ COPY ${ASSET_FILE} /assets/
 LABEL maintainer="Onset-Lab"
 
 ENV NII2DCM_REVISION=0.2.0
+ENV SURGERYFLOW_REVISION=main
 
 WORKDIR /
 RUN apt-get update && apt-get -y install git unzip dcm2niix wget dcmtk
@@ -33,6 +34,6 @@ RUN python3 -m pip install --upgrade pip && \
 
 WORKDIR /
 RUN apt-get install -y git
-RUN git clone https://github.com/Onset-lab/SurgeryFlow.git
+RUN git clone -b ${SURGERYFLOW_REVISION} https://github.com/Onset-lab/SurgeryFlow.git
 
 WORKDIR /
