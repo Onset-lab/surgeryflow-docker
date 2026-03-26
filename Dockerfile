@@ -5,7 +5,6 @@ COPY ${ASSET_FILE} /assets/
 
 LABEL maintainer="Onset-Lab"
 
-ENV NII2DCM_REVISION=0.2.0
 ENV SURGERYFLOW_REVISION=main
 
 WORKDIR /
@@ -30,7 +29,7 @@ RUN apt install -y rsync
 
 # Install nii2dcm
 RUN python3 -m pip install --upgrade pip && \
-    pip install git+https://github.com/onset-lab/nii2dcm.git
+    pip install git+https://github.com/Onset-lab/karawun.git
 
 WORKDIR /
 RUN apt-get install -y git

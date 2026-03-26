@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    tags:
+      - '*'
 
 jobs:
   docker:
@@ -25,9 +27,18 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
+        name: Set tag suffix
+        id: tag_suffix
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            echo "value=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
+          else
+            echo "value=latest" >> $GITHUB_OUTPUT
+          fi
+      -
         name: Build and push
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/surgeryflow:${{ matrix.hospital }}_latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/surgeryflow:${{ matrix.hospital }}_${{ steps.tag_suffix.outputs.value }}
           build-args: ASSET_FILE=configs/${{ matrix.hospital }}_dcm.conf
