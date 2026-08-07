@@ -5,7 +5,7 @@ COPY ${ASSET_FILE} /assets/
 
 LABEL maintainer="Onset-Lab"
 
-ENV SURGERYFLOW_REVISION=2.0.1
+ENV SURGERYFLOW_REVISION=3.0.0
 
 WORKDIR /
 RUN apt-get update && apt-get -y install git unzip dcm2niix wget dcmtk
@@ -29,6 +29,10 @@ RUN apt install -y rsync
 
 RUN python3 -m pip install --upgrade pip && \
     pip install git+https://github.com/Onset-lab/karawun.git
+
+# Install nii2dcm
+RUN python3 -m pip install --upgrade pip && \
+    pip install git+https://github.com/onset-lab/nii2dcm.git
 
 WORKDIR /
 RUN apt-get install -y git
