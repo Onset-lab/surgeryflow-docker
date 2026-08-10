@@ -5,7 +5,7 @@ COPY ${ASSET_FILE} /assets/
 
 LABEL maintainer="Onset-Lab"
 
-ENV SURGERYFLOW_REVISION=3.0.3
+ENV SURGERYFLOW_REVISION=3.0.4
 
 WORKDIR /
 RUN apt-get update && apt-get -y install git unzip dcm2niix wget dcmtk
